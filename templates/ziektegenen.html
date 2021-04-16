@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Zoeken naar beschrijvingen van genen {% endblock %}
+
+{% block content %}
+    <h1> Vind beschrijvingen van genen op zoekwoord </h1>
+    <form method="post">
+
+        <p>
+            vul zoekwoord in: <label for="woord">
+            <input type="text" name="woord"> </label>
+            <button type="submit"> Submit!</button>
+        </p>
+        <hr>
+
+        {% for beschrijving in beschrijvingen %}
+            <script type="text/javascript">
+                var str = "{{ beschrijving[0] }}";
+                var substr = "{{ woord }}";
+                var re = new RegExp(substr, "gi");
+                n_str = str.replace(re, '<b>' + substr + '</b>');
+                document.write(n_str);
+
+            </script><br>
+        {% endfor %}
+
+    </form>
+
+{% endblock %}
